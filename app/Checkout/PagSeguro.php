@@ -65,7 +65,7 @@ class PagSeguro
         $this->preference = array_merge(
             $this->preference,
             [
-                'senderName' => $customer->name.
+                'senderName' => $customer->name,
                 'senderAreaCode' => substr($customer->phone, 0, 2),
                 'senderPhone' => substr($customer->phone, 2),
                 'senderEmail' => $customer->email,
@@ -91,7 +91,7 @@ class PagSeguro
                 'shippingAddressCity' => $address['city'],
                 'shippingAddressState' => $address['state'],
                 'shippingAddressCountry' => $address['country'],
-            ];
+            ]
         );
     }
 }
