@@ -2,28 +2,49 @@
 
 namespace App\Checkout;
 
-class Pagseguro
+class PagSeguro
 {
     protected $preference = [];
+    protected $order;
 
-    public function createPayment(Order $order)
+    public function __construct(Order $order)
     {
-        $this->addCurrency($order)
-            ->addItems($order)
-            ->addCustomer($order)]
+        $this->order = $order;
+    }
+
+    public function createPayment()
+    {
+        $this->addCurrency()
+            ->addItems()
+            ->addCustomer()
             ->setAddress();
     }
 
-    public function addCurrency(Order $order)
+    public function getPreference(): array
+    {
+        return $this->preference;
+    }
+
+    private function addItems()
+    {
+        foreach ($this->order->items() as $item) {
+            $this->addNewItem($item);
+        }
+
+        return $this;
+    }
+
+    private function addCurrency()
     {
         $this->preference['currency'] = 'BRL';
 
         return $this;
     }
 
-    public function addNewItem(Item $item)
+    private function addNewItem(Item $item)
     {
         $championship = $item->championship();
+
         $this->preference = array_merge(
             $this->preference,
             [
@@ -38,9 +59,9 @@ class Pagseguro
         return $this;
     }
 
-    public function addCustomer(Order $order)
+    private function addCustomer()
     {
-        $customer = $order->customer();
+        $customer = $this->order->customer();
         $this->preference = array_merge(
             $this->preference,
             [
@@ -54,7 +75,7 @@ class Pagseguro
         return $this;
     }
 
-    public function setAddress()
+    private function setAddress()
     {
         $address = condig('checkout.address');
 
