@@ -18,3 +18,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('completar-cadastro', [
+    'middleware' => 'auth',
+    'as' => 'completeRegistration',
+    'uses' => 'Auth\CompleteRegistrationController@create'
+]);
+
+Route::post('completar-cadastro', [
+    'middleware' => 'auth',
+    'as' => 'completeRegistration',
+    'uses' => 'Auth\CompleteRegistrationController@store'
+]);
