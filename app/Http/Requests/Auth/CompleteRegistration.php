@@ -26,7 +26,7 @@ class CompleteRegistration extends FormRequest
         return [
             'cpf' => 'required',
             'phone' => 'required',
-            'postal_code' => 'required',
+            'zip_code' => 'required',
             'street' => 'required',
             'number' => 'required',
             'district' => 'required',

@@ -150,6 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
+        \MongolidLaravel\MongolidServiceProvider::class,
 
         /*
          * Application Service Providers...

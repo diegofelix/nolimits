@@ -40,14 +40,14 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="postal_code" class="col-md-4 col-form-label text-md-right">CEP</label>
+                            <label for="zip_code" class="col-md-4 col-form-label text-md-right">CEP</label>
 
                             <div class="col-md-6">
-                                <input id="postal_code" type="text" class="form-control{{ $errors->has('postal_code') ? ' is-invalid' : '' }}" name="postal_code" value="{{ old('postal_code') }}" required>
+                                <input id="zip_code" type="text" class="form-control{{ $errors->has('zip_code') ? ' is-invalid' : '' }}" name="zip_code" value="{{ old('zip_code') }}" required>
 
-                                @if ($errors->has('postal_code'))
+                                @if ($errors->has('zip_code'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('postal_code') }}</strong>
+                                        <strong>{{ $errors->first('zip_code') }}</strong>
                                     </span>
                                 @endif
                             </div>

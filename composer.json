@@ -9,6 +9,8 @@
         "fideloper/proxy": "~4.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
+        "leroy-merlin-br/mongolid": "^2.1",
+        "leroy-merlin-br/mongolid-laravel": "^2.0",
         "pagseguro/pagseguro-php-sdk": "^4.0"
     },
     "require-dev": {
@@ -25,7 +27,8 @@
             "database/factories"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "NoLimits\\": "NoLimits/"
         }
     },
     "autoload-dev": {

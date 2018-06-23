@@ -16,6 +16,8 @@ class CompleteRegistrationController extends Controller
     {
         $user = $request->user();
 
+        $request->merge(['zipCode' => $request->zip_code]);
+
         $user->fill($request->all());
 
         $user->save();
