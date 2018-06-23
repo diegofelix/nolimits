@@ -12,3 +12,5 @@ Route::group(['middleware' => 'auth', 'as' => 'completeRegistration'], function 
     Route::get('completar-cadastro', 'Auth\CompleteRegistrationController@create');
     Route::post('completar-cadastro', 'Auth\CompleteRegistrationController@store');
 });
+
+Route::get('{championship}', 'ChampionshipsController@show');
