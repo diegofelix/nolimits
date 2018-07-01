@@ -14,3 +14,10 @@ Route::group(['middleware' => 'auth', 'as' => 'completeRegistration'], function 
 });
 
 Route::get('{championship}', 'ChampionshipsController@show');
+Route::group(['middleware' => 'auth'], function() {
+    Route::post('{championship}/participar', [
+        'as' => 'checkout',
+        'uses' => 'ChampionshipsController@enroll'
+    ]);
+});
+
