@@ -18,9 +18,11 @@ class EnrollController extends Controller
         $this->repository = $repository;
     }
 
-    public function index(string $championshipSlug, Request $request)
+    public function show(string $enrollId): View
     {
-        $this->repository->findEnrollBy($championshipSlug, $request->user());
+        $enroll = $this->repository->first($enrollId);
+
+        return view('enrolls.show', compact('enroll'));
     }
 
     public function store(string $championshipSlug, EnrollRequest $request): View

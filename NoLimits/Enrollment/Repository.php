@@ -27,6 +27,11 @@ class Repository
     {
     }
 
+    public function first($enrollId)
+    {
+        return Enroll::firstOrFail($enrollId);
+    }
+
     private function getCompetitionsFrom(Championship $championship, array $requestCompetitions): array
     {
         foreach ($championship->competitions as $competition) {
