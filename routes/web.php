@@ -21,9 +21,9 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'EnrollController@store'
     ]);
 
-    Route::get('{championship}/inscricao', [
-        'as' => 'index',
-        'uses' => 'EnrollController@index'
+    Route::get('minhas-inscricoes/{enrollId}', [
+        'as' => 'showEnroll',
+        'uses' => 'EnrollController@show'
     ]);
 });
 
