@@ -16,14 +16,16 @@ Route::group(['middleware' => 'auth', 'as' => 'completeRegistration'], function 
 Route::get('{championship}', 'ChampionshipsController@show');
 Route::group(['middleware' => 'auth'], function() {
 
+    Route::get('minhas-inscricoes/{enrollId}', [
+        'middleware' => 'enroll.owner',
+        'as' => 'showEnroll',
+        'uses' => 'EnrollController@show'
+    ]);
+
     Route::post('{championship}/participar', [
         'as' => 'checkout',
         'uses' => 'EnrollController@store'
     ]);
 
-    Route::get('minhas-inscricoes/{enrollId}', [
-        'as' => 'showEnroll',
-        'uses' => 'EnrollController@show'
-    ]);
 });
 
