@@ -23,6 +23,16 @@ class Enroll extends Model
         return $this->embedsMany(Competition::class, 'competitions');
     }
 
+    public function getTotalValue(): float
+    {
+        $total = 0;
+        foreach ($this->competitions as $competition) {
+            $total += $competition['price'] / 100;
+        }
+
+        return $total;
+    }
+
     public function save(bool $force = false)
     {
         if (!$this->_id) {
