@@ -1,6 +1,8 @@
 <?php
-namespace NoLimits\Championship;
+namespace NoLimits\Enrollment;
 
+use NoLimits\Championship\Championship;
+use NoLimits\Championship\Competition;
 use NoLimits\User\User;
 use Support\Database\Model;
 
