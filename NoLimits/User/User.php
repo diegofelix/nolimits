@@ -2,9 +2,9 @@
 namespace NoLimits\User;
 
 use Illuminate\Contracts\Auth\Authenticatable;
-use MongolidLaravel\MongolidModel;
+use Support\Database\Model;
 
-class User extends MongolidModel implements Authenticatable
+class User extends Model implements Authenticatable
 {
     protected $fillable = [
         'name',

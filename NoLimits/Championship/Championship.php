@@ -1,9 +1,9 @@
 <?php
 namespace NoLimits\Championship;
 
-use MongolidLaravel\MongolidModel;
+use Support\Database\Model;
 
-class Championship extends MongolidModel
+class Championship extends Model
 {
     protected $collection = 'championships';
 

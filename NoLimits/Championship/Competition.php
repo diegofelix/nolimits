@@ -1,9 +1,9 @@
 <?php
 namespace NoLimits\Championship;
 
-use MongolidLaravel\MongolidModel;
+use Support\Database\Model;
 
-class Competition extends MongolidModel
+class Competition extends Model
 {
     public function game()
     {

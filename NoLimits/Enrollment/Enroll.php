@@ -1,10 +1,10 @@
 <?php
 namespace NoLimits\Championship;
 
-use MongolidLaravel\MongolidModel;
 use NoLimits\User\User;
+use Support\Database\Model;
 
-class Enroll extends MongolidModel
+class Enroll extends Model
 {
     protected $collection = 'enrolls';
 
