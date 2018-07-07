@@ -23,8 +23,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="competitions[{{ $loop->index }}]" class="custom-control-input" id="competition-{{ $loop->index }}">
-                                        <label class="custom-control-label" for="competition-{{ $loop->index }}">
+                                        <input type="checkbox" name="competitions[{{ $competition->_id }}]" class="custom-control-input" id="competition-{{ $competition->_id }}">
+                                        <label class="custom-control-label" for="competition-{{ $competition->_id }}">
                                             <h5 class="card-title">{{ $competition->game()->title }}</h5>
                                             <h6 class="card-subtitle mb-2 text-muted">{{ $competition->format }}</h6>
                                             R$ {{ $competition->price / 100 }}

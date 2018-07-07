@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EnrollRequest;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 use NoLimits\Championship\Championship;
+use NoLimits\Championship\Enroll;
 
 class ChampionshipsController extends Controller
 {
@@ -15,11 +15,19 @@ class ChampionshipsController extends Controller
         return view('championships.show', compact('championship'));
     }
 
-    public function enroll(string $championshipSlug, Request $request): View
+    public function enroll(string $championshipSlug, EnrollRequest $request): View
     {
-        dd($request->all());
-
         $championship = Championship::firstOrFail(['slug' => $championshipSlug]);
+        $requestCompetitions = array_keys($request->competitions);
+        foreach ($championship->competitions as $competition) {
+            if (in_array($competition['_id'], $requestCompetitions)) {
+                $selectedCompetitions[] = $competition;
+            }
+        }
+
+        dd($selectedCompetitions);
+
+        $enroll = new Enroll();
 
         return view('championships.enroll', compact('championship'));
     }
