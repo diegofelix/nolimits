@@ -15,7 +15,7 @@ class Repository
 
         $user = $request->user();
         $enroll = new Enroll();
-        $enroll->competitions = $userCompetitions;
+        $enroll->embed('competitions', $userCompetitions);
         $enroll->attach('user', $user);
         $enroll->attach('championship', $championship);
         $enroll->save();
