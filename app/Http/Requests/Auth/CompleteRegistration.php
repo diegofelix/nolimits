@@ -24,7 +24,7 @@ class CompleteRegistration extends FormRequest
     public function rules()
     {
         return [
-            'cpf' => 'required',
+            'cpf' => 'required|cpf',
             'phone' => 'required',
             'zip_code' => 'required',
             'street' => 'required',

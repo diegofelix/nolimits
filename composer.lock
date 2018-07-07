@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f7e37dcaa2fb1d14b6622d303a39e18",
+    "content-hash": "242a973317c388befb554d30218b9db9",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -265,6 +265,47 @@
                 "validator"
             ],
             "time": "2017-11-15T23:40:40+00:00"
+        },
+        {
+            "name": "eltoninacio/cpfcnpj-laravel",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eltoninacio/cpfcnpj-laravel.git",
+                "reference": "98e931b17f9b0838bf30b69abdf726208448e869"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eltoninacio/cpfcnpj-laravel/zipball/98e931b17f9b0838bf30b69abdf726208448e869",
+                "reference": "98e931b17f9b0838bf30b69abdf726208448e869",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "illuminate/support": "^5.0",
+                "illuminate/validation": "^5.0",
+                "phpunit/phpunit": "4.8.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EltonInacio\\ValidadorCpfCnpj\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Elton Inacio",
+                    "email": "elton.inacio95@gmail.com"
+                }
+            ],
+            "description": "Validação de cpf, cnpj, cpfcnpj para laravel 5.*",
+            "time": "2018-04-03T00:39:16+00:00"
         },
         {
             "name": "erusev/parsedown",
