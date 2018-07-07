@@ -29,7 +29,8 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "NoLimits\\": "NoLimits/"
+            "NoLimits\\": "NoLimits/",
+            "Support\\": "Support/"
         }
     },
     "autoload-dev": {
