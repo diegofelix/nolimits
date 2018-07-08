@@ -3,28 +3,17 @@ namespace NoLimits\Enrollment;
 
 use App\Http\Requests\EnrollRequest;
 use NoLimits\Championship\Championship;
-use NoLimits\Championship\Enroll;
 
 class Repository
 {
     public function newEnroll(string $championshipSlug, EnrollRequest $request)
     {
-        $championship = Championship::firstOrFail(['slug' => $championshipSlug]);
-        $requestCompetitions = array_keys($request->get('competitions'));
-        $userCompetitions = $this->getCompetitionsFrom($championship, $requestCompetitions);
-
-        $user = $request->user();
-        $enroll = new Enroll();
-        $enroll->embed('competitions', $userCompetitions);
-        $enroll->attach('user', $user);
-        $enroll->attach('championship', $championship);
+        $championship = $this->getChampionship($championshipSlug);
+        $enroll = $this->makeNewEnroll($request, $championship);
+        $enroll->paymentUrl = $this->getPaymentUrl($enroll);
         $enroll->save();
 
         return $enroll;
-    }
-
-    public function findEnrollBy($championshipSlug, $user)
-    {
     }
 
     public function first($enrollId)
@@ -32,14 +21,18 @@ class Repository
         return Enroll::firstOrFail($enrollId);
     }
 
-    private function getCompetitionsFrom(Championship $championship, array $requestCompetitions): array
+    private function getChampionship(string $championshipSlug): Championship
     {
-        foreach ($championship->competitions as $competition) {
-            if (in_array($competition['_id'], $requestCompetitions)) {
-                $userCompetitions[] = $competition;
-            }
-        }
+        return Championship::firstOrFail(['slug' => $championshipSlug]);
+    }
 
-        return $userCompetitions ?? [];
+    private function getPaymentUrl($enroll): string
+    {
+        return app(PagSeguro::class, compact('enroll'))->getRedirectUrlForPayment();
+    }
+
+    private function makeNewEnroll(EnrollRequest $request, Championship $championship): Enroll
+    {
+        return app(MakeNewEnroll::class, compact('championship', 'request'))->make();
     }
 }
