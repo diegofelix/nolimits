@@ -25,9 +25,11 @@ class MakeNewEnroll
 
     public function make(): Enroll
     {
-        $enroll = new Enroll();
+        $user = $this->request->user();
+
+        $enroll = app(Enroll::class);
         $enroll->competitions = $this->getUserSelectedCompetitions();
-        $enroll->attach('user', $this->request->user());
+        $enroll->attach('user', $user);
         $enroll->attach('championship', $this->championship);
 
         return $enroll;
