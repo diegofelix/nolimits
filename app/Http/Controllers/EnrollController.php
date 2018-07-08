@@ -28,7 +28,7 @@ class EnrollController extends Controller
     public function store(string $championshipSlug, EnrollRequest $request): View
     {
         if ($enroll = $this->repository->newEnroll($championshipSlug, $request)) {
-            return redirect()->route('index', $enroll);
+            return redirect()->route('showEnroll', $enroll);
         }
     }
 }
