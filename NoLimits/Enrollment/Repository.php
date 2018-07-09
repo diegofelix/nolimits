@@ -22,7 +22,7 @@ class Repository
         $this->pagSeguro = $pagSeguro;
     }
 
-    public function newEnroll(string $championshipSlug, EnrollRequest $request)
+    public function newEnroll(string $championshipSlug, EnrollRequest $request): Enroll
     {
         $championship = $this->getChampionship($championshipSlug);
         $enroll = $this->enrollMaker->makeWith($championship, $request);
@@ -32,7 +32,7 @@ class Repository
         return $enroll;
     }
 
-    public function first($enrollId)
+    public function first($enrollId): Enroll
     {
         return Enroll::firstOrFail($enrollId);
     }
