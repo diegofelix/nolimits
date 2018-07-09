@@ -19,7 +19,7 @@ class MakeNewEnrollTest extends TestCase
         $competition = m::mock(Competition::class);
         $user = m::mock(User::class);
         $enroll = $this->instance(Enroll::class, m::mock(Enroll::class));
-        $enrollMaker = new MakeNewEnroll($championship, $request);
+        $enrollMaker = new MakeNewEnroll();
 
         // Expectations
         $request->expects()
@@ -53,7 +53,7 @@ class MakeNewEnrollTest extends TestCase
             ->attach('championship', $championship);
 
         // Actions
-        $result = $enrollMaker->make();
+        $result = $enrollMaker->makeWith($championship, $request);
 
         // Assertions
         $this->assertEquals($enroll, $result);

@@ -6,11 +6,27 @@ use NoLimits\Championship\Championship;
 
 class Repository
 {
+    /**
+     * @var MakeNewEnroll
+     */
+    private $enrollMaker;
+
+    /**
+     * @var PagSeguro
+     */
+    private $pagSeguro;
+
+    public function __construct(MakeNewEnroll $enrollMaker, PagSeguro $pagSeguro)
+    {
+        $this->enrollMaker = $enrollMaker;
+        $this->pagSeguro = $pagSeguro;
+    }
+
     public function newEnroll(string $championshipSlug, EnrollRequest $request)
     {
         $championship = $this->getChampionship($championshipSlug);
-        $enroll = $this->makeNewEnroll($request, $championship);
-        $enroll->paymentUrl = $this->getPaymentUrl($enroll);
+        $enroll = $this->enrollMaker->makeWith($championship, $request);
+        $enroll->paymentUrl = $this->pagSeguro->getRedirectUrlForPayment($enroll);
         $enroll->save();
 
         return $enroll;
@@ -24,15 +40,5 @@ class Repository
     private function getChampionship(string $championshipSlug): Championship
     {
         return Championship::firstOrFail(['slug' => $championshipSlug]);
-    }
-
-    private function getPaymentUrl($enroll): string
-    {
-        return app(PagSeguro::class, compact('enroll'))->getRedirectUrlForPayment();
-    }
-
-    private function makeNewEnroll(EnrollRequest $request, Championship $championship): Enroll
-    {
-        return app(MakeNewEnroll::class, compact('championship', 'request'))->make();
     }
 }

@@ -22,13 +22,9 @@ class PagSeguro
      */
     protected $enroll;
 
-    public function __construct(Enroll $enroll)
+    public function getRedirectUrlForPayment(Enroll $enroll): string
     {
         $this->enroll = $enroll;
-    }
-
-    public function getRedirectUrlForPayment(): string
-    {
         $credentials = $this->getCredentials();
         $payment = $this->generateNewPayment();
         $this->setCustomerInformation($payment);

@@ -17,20 +17,17 @@ class MakeNewEnroll
      */
     private $request;
 
-    public function __construct(Championship $championship, EnrollRequest $request)
+    public function makeWith(Championship $championship, EnrollRequest $request): Enroll
     {
-        $this->championship = $championship;
         $this->request = $request;
-    }
+        $this->championship = $championship;
 
-    public function make(): Enroll
-    {
-        $user = $this->request->user();
+        $user = $request->user();
 
         $enroll = app(Enroll::class);
         $enroll->competitions = $this->getUserSelectedCompetitions();
         $enroll->attach('user', $user);
-        $enroll->attach('championship', $this->championship);
+        $enroll->attach('championship', $championship);
 
         return $enroll;
     }
