@@ -35,6 +35,11 @@ class Enroll extends Model
         return $total;
     }
 
+    public function getPaymentUrl()
+    {
+        return $this->paymentUrl;
+    }
+
     public function save(bool $force = false)
     {
         if (!$this->_id) {

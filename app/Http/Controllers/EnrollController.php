@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EnrollRequest;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use NoLimits\Enrollment\Repository;
 
@@ -25,10 +26,10 @@ class EnrollController extends Controller
         return view('enrolls.show', compact('enroll'));
     }
 
-    public function store(string $championshipSlug, EnrollRequest $request): View
+    public function store(string $championshipSlug, EnrollRequest $request): RedirectResponse
     {
         if ($enroll = $this->repository->newEnroll($championshipSlug, $request)) {
-            return redirect()->route('showEnroll', $enroll);
+            return redirect()->route('showEnroll', $enroll->getKey());
         }
     }
 }
